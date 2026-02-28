@@ -17,26 +17,26 @@ export default function JourneyMap({ flow }: Props) {
     <div className={`border-2 ${cfg.border} rounded-xl p-4`}>
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <h3 className="font-bold text-gray-800 text-base">{flow.name}</h3>
+        <h3 className="font-bold text-gray-800 text-lg">{flow.name}</h3>
         <div className="flex items-center gap-2">
-          <span className="text-xs text-gray-500">{flow.clicks} click{flow.clicks !== 1 ? 's' : ''} from home</span>
-          <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${cfg.badge}`}>{cfg.label}</span>
+          <span className="text-sm text-gray-500">{flow.clicks} click{flow.clicks !== 1 ? 's' : ''} from home</span>
+          <span className={`text-sm font-semibold px-2.5 py-1 rounded-full ${cfg.badge}`}>{cfg.label}</span>
         </div>
       </div>
 
       {/* Steps */}
-      <div className="flex items-start gap-2 mb-4 flex-wrap">
+      <div className="flex items-start gap-3 mb-4 flex-wrap">
         {flow.steps.map((step, i) => (
           <div key={i} className="flex items-center gap-2">
             {/* Step bubble */}
             <div className={`relative flex flex-col items-center`}>
-              <div className={`flex items-center justify-center w-7 h-7 rounded-full text-xs font-bold text-white flex-shrink-0 ${step.friction ? 'bg-amber-500' : 'bg-summit-blue'}`}>
+              <div className={`flex items-center justify-center w-8 h-8 rounded-full text-sm font-bold text-white flex-shrink-0 ${step.friction ? 'bg-amber-500' : 'bg-summit-blue'}`}>
                 {i + 1}
               </div>
             </div>
-            <div className="max-w-[140px]">
-              <div className={`text-xs font-semibold ${step.friction ? 'text-amber-700' : 'text-gray-800'}`}>{step.label}</div>
-              {step.note && <div className="text-xs text-gray-400 leading-tight mt-0.5">{step.note}</div>}
+            <div className="max-w-[180px]">
+              <div className={`text-sm font-semibold ${step.friction ? 'text-amber-700' : 'text-gray-800'}`}>{step.label}</div>
+              {step.note && <div className="text-sm text-gray-400 leading-snug mt-0.5">{step.note}</div>}
             </div>
             {/* Arrow */}
             {i < flow.steps.length - 1 && (
@@ -50,10 +50,10 @@ export default function JourneyMap({ flow }: Props) {
 
       {/* Friction points */}
       <div>
-        <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Key Friction Points</div>
-        <ul className="space-y-1">
+        <div className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Key Friction Points</div>
+        <ul className="space-y-1.5">
           {flow.frictionPoints.map((fp, i) => (
-            <li key={i} className="flex items-start gap-2 text-xs text-gray-600">
+            <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
               <span className="text-amber-500 mt-0.5 flex-shrink-0">⚠</span>
               {fp}
             </li>

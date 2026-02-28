@@ -100,7 +100,10 @@ export default function Performance() {
     >
       {/* Score gauges — 2×2 grid */}
       <div className="mb-6">
-        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">Page Speed Scores</h3>
+        <h3 className="text-base font-semibold text-gray-500 uppercase tracking-wide mb-2">Page Speed Scores</h3>
+        <p className="text-sm text-gray-400 mb-4">
+          Scores below reflect two pages only — the Homepage and the /ready-for-winter landing page. They are not representative of the full site.
+        </p>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 justify-items-center">
           {Object.values(PAGES).map(pg => (
             <ScoreGauge key={pg.label} score={pg.score} label={pg.label} />
@@ -119,16 +122,16 @@ export default function Performance() {
 
       {/* Core Web Vitals comparison table */}
       <div className="mb-6">
-        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Core Web Vitals — All Pages</h3>
+        <h3 className="text-base font-semibold text-gray-500 uppercase tracking-wide mb-3">Core Web Vitals — Homepage &amp; /ready-for-winter</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gray-200">
                 <th className="text-left py-2 px-3 text-xs text-gray-500 font-semibold uppercase">Metric</th>
                 {Object.values(PAGES).map(pg => (
-                  <th key={pg.label} className="text-center py-2 px-2 text-xs text-gray-500 font-semibold uppercase leading-tight">{pg.label}</th>
+                  <th key={pg.label} className="text-center py-2 px-2 text-sm text-gray-500 font-semibold uppercase leading-tight">{pg.label}</th>
                 ))}
-                <th className="text-center py-2 px-2 text-xs text-gray-500 font-semibold uppercase">Good ≤</th>
+                <th className="text-center py-2 px-2 text-sm text-gray-500 font-semibold uppercase">Good ≤</th>
               </tr>
             </thead>
             <tbody>
@@ -141,13 +144,13 @@ export default function Performance() {
                     const { bg, text } = statusStyle[status];
                     return (
                       <td key={pg.label} className={`py-2 px-2 text-center`}>
-                        <span className={`inline-block px-2 py-0.5 rounded text-xs font-bold ${bg} ${text} border`}>
+                        <span className={`inline-block px-2 py-0.5 rounded text-sm font-bold ${bg} ${text} border`}>
                           {fmt(key, val)}
                         </span>
                       </td>
                     );
                   })}
-                  <td className="py-2 px-2 text-center text-xs text-gray-400 font-mono">
+                  <td className="py-2 px-2 text-center text-sm text-gray-400 font-mono">
                     {key === 'ttfb' ? `${thresholds[0] * 1}ms` : key === 'cls' ? thresholds[0] : `${thresholds[0]}${unit}`}
                   </td>
                 </tr>
@@ -155,22 +158,22 @@ export default function Performance() {
             </tbody>
           </table>
         </div>
-        <p className="text-xs text-gray-400 mt-2">🟢 Good &nbsp;🟡 Needs Improvement &nbsp;🔴 Poor — per Google Core Web Vitals thresholds</p>
+        <p className="text-sm text-gray-400 mt-2">🟢 Good &nbsp;🟡 Needs Improvement &nbsp;🔴 Poor — per Google Core Web Vitals thresholds</p>
       </div>
 
       {/* Radar chart */}
       <div className="mb-6">
-        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Performance Profile — Normalised (100 = best)</h3>
+        <h3 className="text-base font-semibold text-gray-500 uppercase tracking-wide mb-3">Performance Profile — Normalised (100 = best)</h3>
         <div className="h-56">
           <ResponsiveContainer width="100%" height="100%">
             <RadarChart data={radarData} cx="50%" cy="50%">
               <PolarGrid />
-              <PolarAngleAxis dataKey="metric" tick={{ fontSize: 12, fontWeight: 600 }} />
+              <PolarAngleAxis dataKey="metric" tick={{ fontSize: 14, fontWeight: 600 }} />
               <Radar name="Home Mobile"   dataKey="HomeMobile"  stroke="#ef4444" fill="#ef4444" fillOpacity={0.1} strokeWidth={2} />
               <Radar name="Home Desktop"  dataKey="HomeDesktop" stroke="#16a34a" fill="#16a34a" fillOpacity={0.1} strokeWidth={2} />
               <Radar name="RfW Mobile"    dataKey="RfWMobile"   stroke="#f97316" fill="#f97316" fillOpacity={0.1} strokeWidth={2} strokeDasharray="5 3" />
               <Radar name="RfW Desktop"   dataKey="RfWDesktop"  stroke="#6366f1" fill="#6366f1" fillOpacity={0.1} strokeWidth={2} strokeDasharray="5 3" />
-              <Legend wrapperStyle={{ fontSize: 11 }} />
+              <Legend wrapperStyle={{ fontSize: 13 }} />
               <Tooltip formatter={(v: number) => `${v}/100`} />
             </RadarChart>
           </ResponsiveContainer>
@@ -179,13 +182,13 @@ export default function Performance() {
 
       {/* Crawl issues bar chart */}
       <div className="mb-6">
-        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Screaming Frog — % of Pages / Images Affected</h3>
+        <h3 className="text-base font-semibold text-gray-500 uppercase tracking-wide mb-3">Screaming Frog — % of Pages / Images Affected</h3>
         <div className="h-44">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={crawlIssueData} layout="vertical" margin={{ left: 8, right: 28, top: 0, bottom: 0 }}>
               <CartesianGrid strokeDasharray="3 3" horizontal={false} />
-              <XAxis type="number" domain={[0, 100]} tickFormatter={v => `${v}%`} tick={{ fontSize: 11 }} />
-              <YAxis type="category" dataKey="name" width={145} tick={{ fontSize: 11 }} />
+              <XAxis type="number" domain={[0, 100]} tickFormatter={v => `${v}%`} tick={{ fontSize: 13 }} />
+              <YAxis type="category" dataKey="name" width={155} tick={{ fontSize: 13 }} />
               <Tooltip formatter={(v: number) => `${v.toFixed(1)}%`} />
               <Bar dataKey="value" radius={[0, 4, 4, 0]}>
                 {crawlIssueData.map((entry, i) => <Cell key={i} fill={entry.fill} />)}
@@ -197,7 +200,7 @@ export default function Performance() {
 
       {/* Key findings */}
       <div>
-        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Top Improvement Opportunities</h3>
+        <h3 className="text-base font-semibold text-gray-500 uppercase tracking-wide mb-3">Top Improvement Opportunities</h3>
         <MetricRow
           label="Missing image size attributes"
           value={`${imageStats.missingSizeAttrs} / ${imageStats.total} images`}

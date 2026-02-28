@@ -18,13 +18,13 @@ const statusConfig: Record<Status, { dot: string; bg: string; text: string }> = 
 export default function MetricRow({ label, value, status = 'neutral', note, bold = false }: Props) {
   const cfg = statusConfig[status];
   return (
-    <div className={`flex items-center justify-between px-3 py-2 rounded-lg ${cfg.bg} mb-1.5`}>
+    <div className={`flex items-center justify-between px-3 py-2.5 rounded-lg ${cfg.bg} mb-2`}>
       <div className="flex items-center gap-2">
-        <div className={`w-2 h-2 rounded-full flex-shrink-0 ${cfg.dot}`} />
-        <span className={`text-sm ${bold ? 'font-semibold' : 'font-medium'} text-gray-700`}>{label}</span>
-        {note && <span className="text-xs text-gray-400 hidden sm:inline">— {note}</span>}
+        <div className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${cfg.dot}`} />
+        <span className={`text-base ${bold ? 'font-semibold' : 'font-medium'} text-gray-700`}>{label}</span>
+        {note && <span className="text-sm text-gray-400">— {note}</span>}
       </div>
-      <span className={`text-sm font-bold ${cfg.text} ml-4 flex-shrink-0`}>{value}</span>
+      <span className={`text-base font-bold ${cfg.text} ml-4 flex-shrink-0`}>{value}</span>
     </div>
   );
 }

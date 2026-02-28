@@ -14,7 +14,6 @@ const proposedEvents = [
   { event: 'resource_download', trigger: 'PDF download from any page', value: 'Medium' },
   { event: 'rebate_program_view', trigger: 'View rebates/efficiency page', value: 'Medium' },
   { event: 'emergency_cta_click', trigger: 'Click "Report an Emergency" header CTA', value: 'Medium' },
-  { event: 'chat_open', trigger: 'Open chat widget (if present)', value: 'Low' },
 ];
 
 const strategyPoints = [
@@ -35,8 +34,13 @@ const strategyPoints = [
   },
   {
     icon: '🎯',
-    title: 'No conversion events detected externally',
-    body: 'Neither "Start Service" nor "Pay My Bill" fires a measurable conversion event accessible externally. Building this event architecture is the highest-leverage first action.',
+    title: 'Recommend building a GA4 conversion event layer',
+    body: 'Key user actions — reaching the Start/Stop/Transfer page, initiating bill pay, submitting forms — are strong candidates for GA4 events via GTM. Implementing this would connect Summit\'s tracking stack to measurable outcomes and feed attribution back to Meta and TV Squared campaigns.',
+  },
+  {
+    icon: '🤖',
+    title: 'Structured data prepares Summit for AI-powered search',
+    body: 'Search engines like Google, Bing, and AI-driven tools (ChatGPT, Perplexity, AI Overviews) use structured data to understand and surface business information accurately. With zero schema markup on 97 pages, Summit is invisible to this growing discovery channel. Adding LocalBusiness, FAQPage, and ServiceArea schema is a high-ROI, low-cost improvement.',
   },
 ];
 
@@ -50,7 +54,7 @@ export default function Tracking() {
     >
       {/* Signal checklist */}
       <div className="mb-6">
-        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Tracking Stack — What's Detected</h3>
+        <h3 className="text-base font-semibold text-gray-500 uppercase tracking-wide mb-3">Tracking Stack — What's Detected</h3>
         <div className="grid gap-2 sm:grid-cols-2">
           {trackingSignals.map((sig, i) => (
             <div
@@ -71,23 +75,23 @@ export default function Tracking() {
 
       {/* Proposed event architecture */}
       <div className="mb-6">
-        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Proposed GTM Event Architecture</h3>
+        <h3 className="text-base font-semibold text-gray-500 uppercase tracking-wide mb-3">Proposed GTM Event Architecture</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gray-200">
-                <th className="text-left py-2 px-2 text-xs text-gray-500 font-semibold uppercase">Event Name</th>
-                <th className="text-left py-2 px-2 text-xs text-gray-500 font-semibold uppercase">Trigger</th>
-                <th className="text-left py-2 px-2 text-xs text-gray-500 font-semibold uppercase">Business Value</th>
+                <th className="text-left py-2 px-2 text-sm text-gray-500 font-semibold uppercase">Event Name</th>
+                <th className="text-left py-2 px-2 text-sm text-gray-500 font-semibold uppercase">Trigger</th>
+                <th className="text-left py-2 px-2 text-sm text-gray-500 font-semibold uppercase">Business Value</th>
               </tr>
             </thead>
             <tbody>
               {proposedEvents.map((ev, i) => (
                 <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                  <td className="py-2 px-2 font-mono text-xs text-summit-blue font-semibold">{ev.event}</td>
-                  <td className="py-2 px-2 text-xs text-gray-600">{ev.trigger}</td>
+                  <td className="py-2 px-2 font-mono text-sm text-summit-blue font-semibold">{ev.event}</td>
+                  <td className="py-2 px-2 text-sm text-gray-600">{ev.trigger}</td>
                   <td className="py-2 px-2">
-                    <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
+                    <span className={`text-sm px-2 py-0.5 rounded-full font-medium ${
                       ev.value === 'High' ? 'bg-red-100 text-red-700' :
                       ev.value === 'Medium' ? 'bg-amber-100 text-amber-700' :
                       'bg-gray-100 text-gray-600'
@@ -102,15 +106,15 @@ export default function Tracking() {
 
       {/* Strategic framing */}
       <div>
-        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Strategic Context</h3>
+        <h3 className="text-base font-semibold text-gray-500 uppercase tracking-wide mb-3">Strategic Context</h3>
         <div className="grid gap-3 sm:grid-cols-2">
           {strategyPoints.map((pt, i) => (
-            <div key={i} className="bg-summit-light border border-blue-100 rounded-lg p-3">
-              <div className="flex items-start gap-2">
-                <span className="text-xl flex-shrink-0">{pt.icon}</span>
+            <div key={i} className="bg-summit-light border border-blue-100 rounded-lg p-4">
+              <div className="flex items-start gap-3">
+                <span className="text-2xl flex-shrink-0">{pt.icon}</span>
                 <div>
-                  <p className="text-sm font-semibold text-gray-800">{pt.title}</p>
-                  <p className="text-xs text-gray-500 mt-1 leading-relaxed">{pt.body}</p>
+                  <p className="text-base font-semibold text-gray-800">{pt.title}</p>
+                  <p className="text-sm text-gray-500 mt-1 leading-relaxed">{pt.body}</p>
                 </div>
               </div>
             </div>

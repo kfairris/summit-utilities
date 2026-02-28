@@ -38,24 +38,24 @@ export default function NinetyDay() {
             <div key={phase.phase} className={`border-2 ${cfg.border} rounded-xl overflow-hidden`}>
               {/* Phase header */}
               <div className={`${cfg.color} px-4 py-3`}>
-                <div className="text-white text-xs font-semibold uppercase tracking-wide">Phase {phase.phase}</div>
-                <div className="text-white font-bold text-base leading-tight">{cfg.label}</div>
-                <div className="text-white/80 text-xs mt-0.5">{phase.focus}</div>
+                <div className="text-white text-sm font-semibold uppercase tracking-wide">Phase {phase.phase}</div>
+                <div className="text-white font-bold text-lg leading-tight">{cfg.label}</div>
+                <div className="text-white/80 text-sm mt-0.5">{phase.focus}</div>
               </div>
               {/* Actions */}
               <div className={`${cfg.light} p-4`}>
-                <ul className="space-y-2 mb-4">
+                <ul className="space-y-2.5 mb-4">
                   {phase.actions.map((action, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <div className={`w-1.5 h-1.5 rounded-full ${cfg.dot} mt-1.5 flex-shrink-0`} />
-                      <span className="text-xs text-gray-700 leading-relaxed">{action}</span>
+                      <div className={`w-2 h-2 rounded-full ${cfg.dot} mt-1.5 flex-shrink-0`} />
+                      <span className="text-sm text-gray-700 leading-relaxed">{action}</span>
                     </li>
                   ))}
                 </ul>
                 {/* Outcome */}
-                <div className={`rounded-lg border ${cfg.border} bg-white p-2`}>
-                  <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Expected Outcome</div>
-                  <p className={`text-xs font-medium ${cfg.text} leading-relaxed`}>{phase.outcome}</p>
+                <div className={`rounded-lg border ${cfg.border} bg-white p-3`}>
+                  <div className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-1">Expected Outcome</div>
+                  <p className={`text-sm font-medium ${cfg.text} leading-relaxed`}>{phase.outcome}</p>
                 </div>
               </div>
             </div>
@@ -65,7 +65,7 @@ export default function NinetyDay() {
 
       {/* Footer note */}
       <div className="mt-6 bg-gray-50 border border-gray-200 rounded-lg p-4">
-        <p className="text-xs text-gray-500 leading-relaxed">
+        <p className="text-sm text-gray-500 leading-relaxed">
           <strong className="text-gray-700">Note:</strong> This roadmap is built entirely from public-facing data —
           Screaming Frog crawl, live network analysis, and PageSpeed Insights. Week-1 priorities include gaining access
           to GA4, GTM, and Search Console to validate and refine these findings with actual traffic data.

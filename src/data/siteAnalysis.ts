@@ -7,8 +7,8 @@ export const trackingSignals: TrackingSignal[] = [
   { name: 'TV Squared', detected: true, note: 'TV attribution pixel detected' },
   { name: 'Cookie CMP', detected: true, note: 'Consent management platform active' },
   { name: 'Structured Data / Schema', detected: false, note: 'Zero pages — rich snippet gap' },
-  { name: 'Conversion Event Tracking', detected: false, note: 'No GTM events for service start / bill pay' },
-  { name: 'Funnel / Goal Tracking', detected: false, note: 'Cannot confirm without GA4 access' },
+  { name: 'Conversion Event Tracking', detected: false, note: 'Recommend implementing GA4 events on key actions: bill pay initiation, service page visits, form interactions' },
+  { name: 'Funnel / Goal Tracking', detected: true, note: 'Assumed active — verify goal configuration in GA4 upon access' },
 ];
 
 export const journeyFlows: JourneyFlow[] = [
@@ -18,12 +18,11 @@ export const journeyFlows: JourneyFlow[] = [
     assessment: 'good',
     steps: [
       { label: 'Homepage', url: 'summitutilities.com', note: '"Pay My Bill" button above fold' },
-      { label: 'myaccount.summitutilities.com', url: 'myaccount.summitutilities.com', note: 'Redirects to external portal', friction: true },
+      { label: 'myaccount.summitutilities.com', url: 'myaccount.summitutilities.com', note: 'Redirects to myaccount.summitutilities.com (same brand, payment platform)', friction: false },
     ],
     frictionPoints: [
-      'Exits to external subdomain — trust drop for first-time users',
-      'No return path back to main site after payment',
-      'No confirmation / thank-you event to fire GA4 conversion',
+      'Confirm a clear return path to summitutilities.com exists after payment completion',
+      'Confirm a payment confirmation step is in place and consider firing a GA4 conversion event on completion',
     ],
   },
   {
@@ -31,15 +30,15 @@ export const journeyFlows: JourneyFlow[] = [
     clicks: 2,
     assessment: 'warning',
     steps: [
-      { label: 'Homepage', url: 'summitutilities.com', note: 'No direct CTA in primary nav' },
-      { label: 'Contact Menu', url: 'summitutilities.com/contact', note: 'Must find "Contact" → sub-item', friction: true },
-      { label: 'Start/Stop/Transfer', url: 'summitutilities.com/contact/start-stop-transfer-service', note: 'Buried 2 clicks deep; no dedicated landing page', friction: true },
+      { label: 'Homepage', url: 'summitutilities.com', note: 'No "Start Service" CTA in primary nav' },
+      { label: 'Contact Menu → Start/Stop/Transfer', url: 'summitutilities.com/contact/start-stop-transfer-service', note: 'Directs new customers to myaccount.summitutilities.com to start service online', friction: true },
     ],
     frictionPoints: [
-      '"Start Service" not in primary navigation',
-      'Shared page with "Stop" and "Transfer" — dilutes new customer intent',
-      'No dedicated acquisition landing page for paid/organic traffic',
-      'No GA4 conversion event on form submission',
+      '"Start New Service" not prominently featured in primary navigation on summitutilities.com',
+      'New customers can start service online via myaccount.summitutilities.com — but this path is not surfaced from the main site nav or homepage hero',
+      'Worth reviewing the new-customer setup flow on myaccount to identify friction points and UX improvements',
+      'Page combines Start, Stop, and Transfer actions — consider a cleaner entry point for new customer acquisition',
+      'Opportunity to fire a GA4 event when a user reaches this page to measure new-service intent',
     ],
   },
 ];
@@ -50,7 +49,6 @@ export const ctaAudit: CTAItem[] = [
   { label: 'Report an Emergency', placement: 'Above fold — header', audience: 'both', tracked: false, prominence: 'secondary' },
   { label: 'Start Service', placement: 'Contact sub-menu (2 clicks)', audience: 'new', tracked: false, prominence: 'secondary' },
   { label: 'New Customer CTA', placement: '—', audience: 'new', tracked: false, prominence: 'missing' },
-  { label: 'Request a Quote', placement: '—', audience: 'new', tracked: false, prominence: 'missing' },
 ];
 
 export const ninetyDayPlan: NinetyDayItem[] = [

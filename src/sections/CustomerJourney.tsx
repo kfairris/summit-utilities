@@ -21,13 +21,13 @@ const recommendations = [
   },
   {
     icon: '🔄',
-    title: 'Reduce external portal friction',
-    detail: 'Bill pay redirects to myaccount.summitutilities.com. Add reassurance copy before redirect. Capture a GA4 event on exit.',
+    title: 'Confirm cross-domain tracking',
+    detail: 'Bill pay routes to myaccount.summitutilities.com, Summit\'s same-brand payment platform. Ensure GA4 cross-domain tracking is configured so sessions are attributed correctly across both domains.',
   },
   {
     icon: '📊',
     title: 'Instrument journey with events',
-    detail: 'Neither flow fires a GA4 conversion event. We can\'t optimize what we can\'t measure.',
+    detail: 'Recommend adding GA4 events on high-intent actions — reaching the Start/Stop/Transfer page, initiating bill pay, and completing any forms — to build a measurable conversion funnel.',
   },
 ];
 
@@ -60,14 +60,14 @@ export default function CustomerJourney() {
 
       {/* Optimization recommendations */}
       <div>
-        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Optimization Recommendations</h3>
+        <h3 className="text-base font-semibold text-gray-500 uppercase tracking-wide mb-3">Optimization Recommendations</h3>
         <div className="grid gap-3 sm:grid-cols-2">
           {recommendations.map((rec, i) => (
-            <div key={i} className="bg-summit-light border border-blue-100 rounded-lg p-3 flex gap-3">
-              <span className="text-xl flex-shrink-0">{rec.icon}</span>
+            <div key={i} className="bg-summit-light border border-blue-100 rounded-lg p-4 flex gap-3">
+              <span className="text-2xl flex-shrink-0">{rec.icon}</span>
               <div>
-                <p className="text-sm font-semibold text-gray-800">{rec.title}</p>
-                <p className="text-xs text-gray-500 mt-0.5 leading-relaxed">{rec.detail}</p>
+                <p className="text-base font-semibold text-gray-800">{rec.title}</p>
+                <p className="text-sm text-gray-500 mt-1 leading-relaxed">{rec.detail}</p>
               </div>
             </div>
           ))}

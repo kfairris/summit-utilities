@@ -40,30 +40,30 @@ export default function Conversion() {
     >
       {/* CTA Audit table */}
       <div className="mb-6">
-        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Call-to-Action Audit</h3>
+        <h3 className="text-base font-semibold text-gray-500 uppercase tracking-wide mb-3">Call-to-Action Audit</h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gray-200">
-                <th className="text-left py-2 px-2 text-xs text-gray-500 font-semibold uppercase">CTA</th>
-                <th className="text-left py-2 px-2 text-xs text-gray-500 font-semibold uppercase">Placement</th>
-                <th className="text-left py-2 px-2 text-xs text-gray-500 font-semibold uppercase">Audience</th>
-                <th className="text-left py-2 px-2 text-xs text-gray-500 font-semibold uppercase">Prominence</th>
-                <th className="text-left py-2 px-2 text-xs text-gray-500 font-semibold uppercase">Tracked</th>
+                <th className="text-left py-2 px-2 text-sm text-gray-500 font-semibold uppercase">CTA</th>
+                <th className="text-left py-2 px-2 text-sm text-gray-500 font-semibold uppercase">Placement</th>
+                <th className="text-left py-2 px-2 text-sm text-gray-500 font-semibold uppercase">Audience</th>
+                <th className="text-left py-2 px-2 text-sm text-gray-500 font-semibold uppercase">Prominence</th>
+                <th className="text-left py-2 px-2 text-sm text-gray-500 font-semibold uppercase">Tracked</th>
               </tr>
             </thead>
             <tbody>
               {ctaAudit.map((cta, i) => (
                 <tr key={i} className={`border-b border-gray-50 ${cta.prominence === 'missing' ? 'bg-red-50' : i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
                   <td className="py-2 px-2 font-medium text-gray-800">{cta.label}</td>
-                  <td className="py-2 px-2 text-gray-500 text-xs">{cta.placement}</td>
+                  <td className="py-2 px-2 text-gray-500 text-sm">{cta.placement}</td>
                   <td className="py-2 px-2">
-                    <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${audienceColors[cta.audience]}`}>
+                    <span className={`text-sm px-2 py-0.5 rounded-full font-medium ${audienceColors[cta.audience]}`}>
                       {cta.audience}
                     </span>
                   </td>
                   <td className="py-2 px-2">
-                    <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${prominenceColors[cta.prominence]}`}>
+                    <span className={`text-sm px-2 py-0.5 rounded-full font-medium ${prominenceColors[cta.prominence]}`}>
                       {cta.prominence}
                     </span>
                   </td>
@@ -81,12 +81,12 @@ export default function Conversion() {
 
       {/* Structured data gap */}
       <div className="mb-6">
-        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">SEO / Rich Snippet Readiness</h3>
+        <h3 className="text-base font-semibold text-gray-500 uppercase tracking-wide mb-3">SEO / Rich Snippet Readiness</h3>
         <MetricRow
           label="Pages with structured data"
           value={`${seoStats.structuredDataPages} / ${seoStats.totalHtmlPages}`}
           status="issue"
-          note="Zero rich snippet eligibility"
+          note="No schema markup = invisible to AI search tools (ChatGPT, Perplexity, Google AI Overviews) and ineligible for rich snippets"
         />
         <MetricRow
           label="Pages with title below 30 chars"
@@ -116,20 +116,20 @@ export default function Conversion() {
 
       {/* Proposals */}
       <div>
-        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Conversion Proposals</h3>
+        <h3 className="text-base font-semibold text-gray-500 uppercase tracking-wide mb-3">Conversion Proposals</h3>
         <div className="grid gap-3 sm:grid-cols-2">
           {conversionProposals.map((p, i) => (
             <div key={i} className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
-              <h4 className="font-semibold text-gray-800 text-sm mb-1">{p.title}</h4>
-              <p className="text-xs text-gray-500 leading-relaxed mb-3">{p.description}</p>
+              <h4 className="font-semibold text-gray-800 text-base mb-1">{p.title}</h4>
+              <p className="text-sm text-gray-500 leading-relaxed mb-3">{p.description}</p>
               <div className="flex items-center gap-2 flex-wrap">
-                <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${impactColors[p.impact as keyof typeof impactColors]}`}>
+                <span className={`text-sm px-2.5 py-0.5 rounded-full font-medium ${impactColors[p.impact as keyof typeof impactColors]}`}>
                   {p.impact} Impact
                 </span>
-                <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${effortColors[p.effort as keyof typeof effortColors]}`}>
+                <span className={`text-sm px-2.5 py-0.5 rounded-full font-medium ${effortColors[p.effort as keyof typeof effortColors]}`}>
                   {p.effort} Effort
                 </span>
-                <span className="text-xs text-gray-400 ml-auto">Metric: {p.metric}</span>
+                <span className="text-sm text-gray-400 ml-auto">Metric: {p.metric}</span>
               </div>
             </div>
           ))}

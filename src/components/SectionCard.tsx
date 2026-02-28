@@ -22,7 +22,7 @@ export default function SectionCard({ id, title, subtitle, icon, children, class
           )}
           <div>
             <h2 className="text-white font-bold text-lg leading-tight">{title}</h2>
-            {subtitle && <p className="text-blue-300 text-xs mt-0.5">{subtitle}</p>}
+            {subtitle && <p className="text-blue-300 text-sm mt-0.5">{subtitle}</p>}
           </div>
         </div>
         {/* Content */}

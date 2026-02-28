@@ -37,14 +37,14 @@ export default function Header() {
         <div className="flex items-center justify-between h-14">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center w-8 h-8 bg-summit-teal rounded">
-              <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current">
-                <path d="M12 2L2 19h20L12 2zm0 4l6.5 11h-13L12 6z" />
-              </svg>
-            </div>
+            <img
+              src="/summit-utilities/summitlogo-flame.png"
+              alt="Summit Utilities flame logo"
+              className="w-9 h-9 object-contain"
+            />
             <div>
-              <div className="text-white font-bold text-sm leading-tight">Summit Utilities</div>
-              <div className="text-blue-300 text-xs leading-tight">Digital Experience Audit</div>
+              <div className="text-white font-bold text-base leading-tight">Summit Utilities</div>
+              <div className="text-blue-300 text-sm leading-tight">Digital Experience Audit</div>
             </div>
           </div>
 
@@ -67,8 +67,8 @@ export default function Header() {
 
           {/* Meta */}
           <div className="text-right">
-            <div className="text-blue-300 text-xs">Crawl date: {CRAWL_DATE}</div>
-            <div className="text-blue-400 text-xs">summitutilities.com</div>
+            <div className="text-blue-300 text-sm">Crawl date: {CRAWL_DATE}</div>
+            <div className="text-blue-400 text-sm">summitutilities.com</div>
           </div>
         </div>
       </div>

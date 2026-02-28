@@ -14,8 +14,8 @@ function SummaryBadge({ label, value, status }: { label: string; value: string; 
   };
   return (
     <div className={`border rounded-lg px-4 py-3 text-center flex-1 min-w-[120px] ${colors[status]}`}>
-      <div className="text-lg font-bold leading-tight">{value}</div>
-      <div className="text-xs font-medium mt-0.5 leading-tight">{label}</div>
+      <div className="text-xl font-bold leading-tight">{value}</div>
+      <div className="text-sm font-medium mt-0.5 leading-tight">{label}</div>
     </div>
   );
 }
@@ -32,8 +32,17 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="mb-6">
             <h1 className="text-2xl font-bold leading-tight">Digital Experience Audit Overview</h1>
-            <p className="text-blue-300 text-sm mt-1">
+            <p className="text-blue-300 text-base mt-1">
               Independent audit of summitutilities.com · {CRAWL_DATE} · {crawlStats.totalInternal} URLs crawled · {seoStats.totalHtmlPages} HTML pages analyzed
+            </p>
+          </div>
+
+          {/* Disclaimer banner */}
+          <div className="bg-blue-900/50 border border-blue-400/40 rounded-lg px-4 py-3 mb-6 flex items-start gap-3">
+            <span className="text-blue-300 flex-shrink-0 mt-0.5">ℹ️</span>
+            <p className="text-blue-200 text-sm leading-relaxed">
+              <span className="font-semibold">Demonstration purposes only</span> — Screaming Frog free tier captures up to 500 URLs.
+              This audit reflects a partial crawl; a licensed scan would cover the full site.
             </p>
           </div>
 
@@ -77,16 +86,16 @@ export default function App() {
                 color: 'border-amber-400',
               },
               {
-                n: '2',
+                n: '0',
                 label: 'new-customer CTAs above fold',
                 sub: 'All primary CTAs target existing customers only',
                 color: 'border-amber-400',
               },
             ].map((item, i) => (
               <div key={i} className={`bg-white/10 border-l-4 ${item.color} rounded-r-lg px-4 py-3`}>
-                <span className="text-2xl font-bold text-white">{item.n}</span>
-                <span className="text-blue-200 text-sm ml-2">{item.label}</span>
-                <p className="text-blue-300 text-xs mt-1">{item.sub}</p>
+                <span className="text-3xl font-bold text-white">{item.n}</span>
+                <span className="text-blue-200 text-base ml-2">{item.label}</span>
+                <p className="text-blue-300 text-sm mt-1">{item.sub}</p>
               </div>
             ))}
           </div>
